@@ -18,10 +18,10 @@ IMAGENAME=$4
 LOCATION=northeurope
 
 # Create a resource group
-az group create -n $GROUP -l northeurope
+az group create -n $GROUP -l $LOCATION
 
 # Create the storage account to upload the vhd
-az storage account create -g $GROUP -n $ACCOUNT -l northeurope --sku PREMIUM_LRS
+az storage account create -g $GROUP -n $ACCOUNT -l $LOCATION --sku PREMIUM_LRS
 
 # Get a storage key for the storage account
 STORAGE_KEY=$(az storage account keys list -g $GROUP -n $ACCOUNT --query "[?keyName=='key1'] | [0].value" -o tsv)
